@@ -1,0 +1,50 @@
+- /Account
+   - /balance
+      - auth user is able to view balance
+   - /history
+      - auth user can see transaction history, and access transaction_id
+   - /history/{id}
+      - see the details of an individual transaction with the transfer_id
+      - can we hash the transaction_id?
+   - /deposit
+      - user can deposit money using ?amount=num
+
+- /Friends
+   - /friendslist
+      - auth user can see a list of their friends
+   - /browse
+      - browse for users you are not friends with, filters by if you are is_confirmed
+   - /add?username=user
+      - add a friend
+   - /requests
+      - see pending requests
+         - filter by is_active 'true' is_confirmed 'false' where user_b == principal
+      - /requests?username=user&approved=true
+   - /remove?user=username
+      - remove a friend
+   - /Friends/Messages
+         - view all incoming and outgoing messages
+      - /Messages?user=username
+         - view all messages incoming and outgoing from one user
+      - /Messages/send
+         - send a message to a user who you are friends with
+
+
+- /Transfer
+   - /send DONE
+      - auth user is able to send money to another user
+      - program could print list of friends here if there is no path variable
+      - /send?user=user&amount=num
+   - /request DONE
+      - auth user is able to request a transfer from another user
+      - program could print list of friends here if there is no path variable
+      - /request?user=user&amount=num
+   - /pending
+      - auth user is able to view pending transactions, incoming and outgoing
+      - displays a list of pending transfers
+      - /Pending/{transfer_id} shows the requester and the amount, and whether or not you can fulfill the request
+      - SHOULD WE USE PATH VARIABLE /Pending/{transfer_id}?approve=true
+      - if is_rejected is true then a user cannot try to approve the request again
+      - a user cannot approve a request they sent
+   - /directory
+      - auth user is able to view usernames of other users to send money to
